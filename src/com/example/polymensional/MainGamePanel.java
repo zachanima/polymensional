@@ -2,6 +2,7 @@ package com.example.polymensional;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -56,5 +57,6 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
   
   @Override
   protected void onDraw(Canvas canvas) {
+    canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ship), 10, 10, null);
   }
 }

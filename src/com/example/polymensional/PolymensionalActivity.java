@@ -13,7 +13,9 @@ public class PolymensionalActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         
         // Set full screen.
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+          WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
         setContentView(new MainGamePanel(this));
     }
 }
