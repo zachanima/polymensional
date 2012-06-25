@@ -78,7 +78,8 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
     return true;
   }
   
-  protected void render(Canvas canvas) {
+  @Override
+  protected void onDraw(Canvas canvas) {
     canvas.drawColor(Color.BLACK);
     ship.draw(canvas);
   }

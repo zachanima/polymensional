@@ -34,7 +34,7 @@ public class MainThread extends Thread {
           // Render state to the screen.
           
           // Draw canvas on panel.
-          this.gamePanel.render(canvas);
+          this.gamePanel.onDraw(canvas);
         }
       } finally {
         // Avoid leaving surface in inconsistent state on exception.
