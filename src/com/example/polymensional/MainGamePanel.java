@@ -1,5 +1,6 @@
 package com.example.polymensional;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -16,7 +17,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
     getHolder().addCallback(this);
     
     // Create the game loop thread.
-    thread = new MainThread();
+    thread = new MainThread(getHolder(), this);
     
     // Make GamePanel focusable to handle events.
     setFocusable(true);
@@ -44,6 +45,12 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 
   @Override
   public boolean onTouchEvent(MotionEvent event) {
+    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+      if (event.getY() > getHeight() - 50) {
+        thread.setRunning(false);
+        ((Activity)getContext()).finish();
+      }
+    }
     return super.onTouchEvent(event);
   }
   
