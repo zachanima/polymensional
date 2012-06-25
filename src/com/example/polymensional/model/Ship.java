@@ -3,8 +3,11 @@ package com.example.polymensional.model;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import com.example.polymensional.model.components.Speed;
+
 public class Ship {
   private Bitmap bitmap;
+  private Speed speed;
   private int x;
   private int y;
   private boolean touched;
@@ -39,6 +42,14 @@ public class Ship {
     this.y = y;
   }
   
+  public Speed getSpeed() {
+    return speed;
+  }
+  
+  public void setSpeed(Speed speed) {
+    this.speed = speed;
+  }
+  
   public boolean isTouched() {
     return touched;
   }
@@ -60,6 +71,13 @@ public class Ship {
       }
     } else {
       setTouched(false);
+    }
+  }
+  
+  public void update() {
+    if (!touched) {
+      x += (speed.getXv() * speed.getxDirection());
+      y += (speed.getYv() * speed.getyDirection());
     }
   }
 }

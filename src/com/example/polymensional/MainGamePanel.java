@@ -10,6 +10,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.example.polymensional.model.Ship;
+import com.example.polymensional.model.components.Speed;
 
 public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback {
   private MainThread thread;
@@ -77,9 +78,37 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
     return true;
   }
   
-  @Override
-  protected void onDraw(Canvas canvas) {
+  protected void render(Canvas canvas) {
     canvas.drawColor(Color.BLACK);
     ship.draw(canvas);
+  }
+  
+  public void update() {
+    // Check collision with right wall if heading right.
+    if (ship.getSpeed().getxDirection() == Speed.DIRECTION_RIGHT
+        && ship.getX() + ship.getBitmap().getWidth() / 2 >= getWidth()) {
+      ship.getSpeed().toggleXDirection();
+    }
+    
+    // Check collision with left wall if heading left.
+    if (ship.getSpeed().getxDirection() == Speed.DIRECTION_LEFT
+        && ship.getX() - ship.getBitmap().getWidth() / 2 <= 0) {
+      ship.getSpeed().toggleXDirection();
+    }
+    
+    // Check collision with bottom wall if heading down.
+    if (ship.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
+        && ship.getY() + ship.getBitmap().getHeight() / 2 >= getHeight()) {
+      ship.getSpeed().toggleYDirection();
+    }
+
+    // Check collision with top wall if heading up.
+    if (ship.getSpeed().getyDirection() == Speed.DIRECTION_UP
+        && ship.getY() - ship.getBitmap().getHeight() / 2 <= 0) {
+      ship.getSpeed().toggleYDirection();
+    }
+    
+    // Update the lone ship.
+    ship.update();
   }
 }

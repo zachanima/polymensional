@@ -29,8 +29,12 @@ public class MainThread extends Thread {
         canvas = this.surfaceHolder.lockCanvas();
         synchronized (surfaceHolder) {
           // Update game state.
+          this.gamePanel.update();
+
+          // Render state to the screen.
+          
           // Draw canvas on panel.
-          this.gamePanel.onDraw(canvas);
+          this.gamePanel.render(canvas);
         }
       } finally {
         // Avoid leaving surface in inconsistent state on exception.
@@ -38,7 +42,6 @@ public class MainThread extends Thread {
           surfaceHolder.unlockCanvasAndPost(canvas);
         }
       }
-      // Render state to the screen.
     }
   }
 }
