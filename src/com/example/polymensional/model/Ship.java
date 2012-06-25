@@ -16,6 +16,7 @@ public class Ship {
     this.bitmap = bitmap;
     this.x = x;
     this.y = y;
+    this.speed = new Speed();
   }
   
   public Bitmap getBitmap() {
