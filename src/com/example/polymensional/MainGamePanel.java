@@ -69,7 +69,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         ship.setY((int)event.getY());
       }
     }
-    if (event.getAction() == MotionEvent.ACTION_MOVE) {
+    if (event.getAction() == MotionEvent.ACTION_UP) {
       if (ship.isTouched()) {
         ship.setTouched(false);
       }
